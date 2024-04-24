@@ -1,29 +1,65 @@
 package Window;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JPanel;
 
+import Characters.Player;
 
-public class Panel extends JPanel {
+import static Characters.Player.image;
 
-    public static final int Height = 480;
-    public static final int Width = 640;
+public class Panel extends JPanel implements KeyListener {
 
-    public Panel() {
-        this.setBackground(new Color(0, 33, 153));
+    private Game game;
+
+    public Panel(Game game) {
+        this.game = game;
+        setPreferredSize(new Dimension(1000, 600));
+        this.setFocusable(true);
+        this.addKeyListener(this);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        game.render(g);
+        //g.drawImage(image, 100, 100, null);
 
     }
 
     @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.red);
-        g.drawRect(10, 10, 200, 200);
+    public void keyTyped(KeyEvent e) {
+
     }
 
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("CLick");
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_RIGHT:
+
+                game.player.posX += 10;
+                break;
+            case KeyEvent.VK_LEFT:
+                game.player.posX -= 10;
+                break;
+            case KeyEvent.VK_DOWN:
+                game.player.posY += 10;
+                break;
+            case KeyEvent.VK_UP:
+                game.player.posY -= 10;
+                break;
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 
 }
+

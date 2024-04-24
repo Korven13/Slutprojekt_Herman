@@ -1,25 +1,22 @@
 package Window;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
+import javax.swing.JFrame;
+
 
 public class Window extends JFrame {
+    private JFrame jframe;
+
+    public Window(Panel Panel) {
+        jframe = new JFrame();
+        jframe.add(Panel);
+        jframe.pack();
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setResizable(false);
+        jframe.setVisible(true);
+        jframe.setLocationRelativeTo(null);
 
 
-    public Window() {
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setVisible(true);
-        addPanel();
     }
 
-    private void addPanel() {
-        Panel panel = new Panel();
-        this.add(panel);
-        this.setBounds(10, 10, 1000, 1000);
 
-    }
 }

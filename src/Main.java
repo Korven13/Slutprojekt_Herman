@@ -1,9 +1,9 @@
-import Window.Window;
+import Window.Game;
 
 public class Main {
     public static void main(String[] args) {
 
-        new Window();
+        new Game();
         System.out.println("Hello world!");
     }
 }
