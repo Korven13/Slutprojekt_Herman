@@ -7,19 +7,22 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Characters.Inputs;
 import Characters.Player;
 
 import static Characters.Player.image;
 
-public class Panel extends JPanel implements KeyListener {
-
+public class Panel extends JPanel {
+    private Inputs inputs;
     private Game game;
 
     public Panel(Game game) {
+        inputs = new Inputs(this);
         this.game = game;
         setPreferredSize(new Dimension(1000, 600));
         this.setFocusable(true);
-        this.addKeyListener(this);
+        addKeyListener(inputs);
+
     }
 
     public void paintComponent(Graphics g) {
@@ -29,6 +32,11 @@ public class Panel extends JPanel implements KeyListener {
 
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    /*
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -60,6 +68,7 @@ public class Panel extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+     */
 
 }
 
