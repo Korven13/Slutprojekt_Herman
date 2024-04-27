@@ -1,7 +1,5 @@
 package Window;
 
-import Window.Window;
-import Window.Panel;
 import Characters.Player;
 
 import java.awt.*;
@@ -54,6 +52,7 @@ public class Game implements Runnable {
 
             if (timeDelta >= 1) {
                 player.move();
+                player.animationLoop();
                 timeDelta --;
             }
 

@@ -2,15 +2,11 @@ package Window;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
 import Characters.Inputs;
-import Characters.Player;
 
-import static Characters.Player.image;
 
 public class Panel extends JPanel {
     private Inputs inputs;

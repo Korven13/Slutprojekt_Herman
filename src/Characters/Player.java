@@ -4,54 +4,112 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 
 import javax.imageio.ImageIO;
 
 public class Player extends Character {
-    static public BufferedImage image;
-
+    private BufferedImage[][] image;
+    private int animation = 3;
     private boolean right;
     private boolean left;
     private boolean up;
     private boolean down;
+    private boolean attack;
+    private int animationIndex;
+    private int animationTick;
+
 
     public Player(float posX, float posY) {
         super(posX, posY);
+        splitAnimations();
 
 
+        /*
         try {
             image = ImageIO.read(new File("src/img.png"));
             System.out.println("rätt");
         } catch (IOException e) {
             System.out.println("fel");
             throw new RuntimeException(e);
-
         }
+         */
+    }
 
+
+    private void splitAnimations() {
+        try {
+            BufferedImage imgIdle = ImageIO.read(new File("src/Sprites/Idle.png"));
+            BufferedImage imgRun = ImageIO.read(new File("src/Sprites/Run.png"));
+            BufferedImage imgAttack = ImageIO.read(new File("src/Sprites/Attack_1.png"));
+            BufferedImage imgRunAttack = ImageIO.read(new File("src/Sprites/Run+Attack.png"));
+            image = new BufferedImage[4][6];
+            for (int i = 0; i < 4; i++) {
+                image[0][i] = imgAttack.getSubimage((i*96)+10, 16, 86, 80);
+                image[1][i] = imgRunAttack.getSubimage((i*96)+10, 16, 86, 80);
+            }
+            for (int i = 0; i < 6; i++) {
+                image[2][i] = imgRun.getSubimage((i*96)+10, 16, 86, 80);
+                image[3][i] = imgIdle.getSubimage((i*96)+10, 16, 86, 80);
+            }
+        } catch (IOException e) {
+            System.out.println("fel");
+            throw new RuntimeException(e);
+        }
 
     }
 
+    public void animationLoop() {
+        animationTick++;
+        if (animationTick >= 20) {
+            animationTick = 0;
+            animationIndex++;
+            if (animationIndex >= animationFrames() ) {
+                animationIndex = 0;
+            }
+        }
+
+    }
+
+    private int animationFrames() {
+        if (animation == 0 || animation == 1) {
+            return 4;
+        }
+        else if (animation == 2 || animation == 3) {
+            return 6;
+        }
+        return 4;
+    }
+
     public void move() {
+        animation = 3;
         if (right == true) {
             posX += 1;
+            animation = 2;
         }
         if (left == true) {
             posX -= 1;
+            animation = 2;
         }
         if (up == true) {
-            posY += 1;
+            posY -= 1;
+            animation = 2;
         }
         if (down == true) {
-            posY -= 1;
+            posY += 1;
+            animation = 2;
+        }
+        if (attack == true && animation == 2) {
+            animation = 1;
+        }
+        else if (attack == true) {
+            animation = 0;
         }
     }
 
     public void render(Graphics g) {
 
-        g.drawImage(image, (int) posX, (int) posY, 400, 200, null);
+        g.drawImage(image[animation][animationIndex], (int) posX, (int) posY, 160, 160, null);
     }
 
     public void moveRight(boolean movement) {
@@ -65,6 +123,9 @@ public class Player extends Character {
     }
     public void moveDown(boolean movement) {
         this.down = movement;
+    }
+    public void attack(boolean attack) {
+        this.attack = attack;
     }
 
 
