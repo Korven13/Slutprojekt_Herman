@@ -31,12 +31,32 @@ public class Character {
     public boolean collision(float posX, float posY, int width, int height) {
         int xTile = (int) posX/32;
         int yTile = (int) posY/32;
+        int widthTiles =  1+ width/32;
+        int heightTiles =  1+ height/32;
 
-        if (posX <0 || posX+width > 1152 || posY <0 || posY+height > 704) {
+        System.out.println("xTile: " + xTile);
+        System.out.println("yTile: " + yTile);
+        System.out.println("widthTiles: " + widthTiles);
+        System.out.println("heightTiles: " + heightTiles);
+
+        for (int i = 0; i < widthTiles; i++) {
+            if (GameMap.getMapData(xTile+i, yTile)!=3 || GameMap.getMapData(xTile+i, yTile+ height/32)!=3) {
+                return true;
+            }
+
+        }
+
+        for (int i = 0; i < heightTiles; i++) {
+            if (GameMap.getMapData(xTile, yTile+i)!=3 || GameMap.getMapData(xTile+ width/32, yTile+i)!=3) {
+                return true;
+            }
+        }
+
+
+        if (posX <=0 || posX+width >= 1152 || posY <=0 || posY+height >= 704) {
             return true;
-        } else if (GameMap.getMapData(xTile, yTile) != 3) {
-            return true;
-        } else {
+        }
+        else {
             return false;
         }
     }

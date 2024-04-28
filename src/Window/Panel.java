@@ -25,7 +25,24 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         game.render(g);
+        grid(g);
         //g.drawImage(image, 100, 100, null);
+
+    }
+
+    public void grid(Graphics g) {
+        int x;
+        int y;
+        for (int i = 0; i < 22; i++) {
+            y= i*32;
+            g.drawLine(0, y, 1152, y);
+
+        }
+        for (int j = 0; j < 36; j++) {
+            x = j*32;
+            g.drawLine(x, 0, x, 704);
+
+        }
 
     }
 

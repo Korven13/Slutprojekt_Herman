@@ -23,7 +23,7 @@ public class Player extends Character {
     public Player(float posX, float posY, int width, int height) {
         super(posX, posY, width, height);
         splitAnimations();
-        hitbox(posX, posY, 70, 70);
+        hitbox(posX+32, posY+60, 76, 100);
 
 
         /*
@@ -110,10 +110,10 @@ public class Player extends Character {
         else if (attack == true) {
             animation = 0;
         }
-        if (collision(posX, posY, 70, 70) == true) {
+        if (collision(posX+32, posY+60, 76, 100) == true) {
             System.out.println("collision");
         }
-        else if (collision(posX, posY, 70, 100) == false) {
+        else if (collision(posX+32, posY+60, 76, 100) == false) {
             System.out.println("collision-false");
         }
     }
@@ -122,6 +122,8 @@ public class Player extends Character {
 
         g.drawImage(image[animation][animationIndex], (int) posX, (int) posY, 160, 160, null);
         hitboxDraw(g);
+        //System.out.println("X: " + posX);
+        //System.out.println("y: " + posY);
     }
 
     public void moveRight(boolean movement) {
