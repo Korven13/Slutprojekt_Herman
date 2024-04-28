@@ -1,6 +1,6 @@
 package Characters;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +20,10 @@ public class Player extends Character {
     private int animationTick;
 
 
-    public Player(float posX, float posY) {
-        super(posX, posY);
+    public Player(float posX, float posY, int width, int height) {
+        super(posX, posY, width, height);
         splitAnimations();
+        hitbox(posX, posY, 70, 70);
 
 
         /*
@@ -85,18 +86,22 @@ public class Player extends Character {
         animation = 3;
         if (right == true) {
             posX += 1;
+            hitbox.x +=1;
             animation = 2;
         }
         if (left == true) {
             posX -= 1;
+            hitbox.x -=1;
             animation = 2;
         }
         if (up == true) {
             posY -= 1;
+            hitbox.y -=1;
             animation = 2;
         }
         if (down == true) {
             posY += 1;
+            hitbox.y +=1;
             animation = 2;
         }
         if (attack == true && animation == 2) {
@@ -105,11 +110,18 @@ public class Player extends Character {
         else if (attack == true) {
             animation = 0;
         }
+        if (collision(posX, posY, 70, 70) == true) {
+            System.out.println("collision");
+        }
+        else if (collision(posX, posY, 70, 100) == false) {
+            System.out.println("collision-false");
+        }
     }
 
     public void render(Graphics g) {
 
         g.drawImage(image[animation][animationIndex], (int) posX, (int) posY, 160, 160, null);
+        hitboxDraw(g);
     }
 
     public void moveRight(boolean movement) {

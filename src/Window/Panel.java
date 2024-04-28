@@ -16,7 +16,7 @@ public class Panel extends JPanel {
     public Panel(Game game) {
         inputs = new Inputs(this);
         this.game = game;
-        setPreferredSize(new Dimension(1000, 600));
+        setPreferredSize(new Dimension(1152, 704));
         this.setFocusable(true);
         addKeyListener(inputs);
 

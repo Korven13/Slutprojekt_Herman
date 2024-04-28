@@ -15,7 +15,7 @@ public class Game implements Runnable {
 
     public Game() {
         gameMap = new GameMap(this);
-        player = new Player(200, 200);
+        player = new Player(200, 200, 70, 70);
         panel = new Panel(this);
         window = new Window(panel);
         thread = new Thread(this);
@@ -62,6 +62,7 @@ public class Game implements Runnable {
                 gameMap.update();
                 timeDelta --;
             }
+
 
         }
 
