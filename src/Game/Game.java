@@ -1,6 +1,8 @@
-package Window;
+package Game;
 
 import Characters.Player;
+import Window.Panel;
+import Window.Window;
 
 import java.awt.*;
 
@@ -9,8 +11,10 @@ public class Game implements Runnable {
     private Panel panel;
     Player player;
     private Thread thread;
+    private GameMap gameMap;
 
     public Game() {
+        gameMap = new GameMap(this);
         player = new Player(200, 200);
         panel = new Panel(this);
         window = new Window(panel);
@@ -20,7 +24,9 @@ public class Game implements Runnable {
 
 
     public void render(Graphics g) {
+        gameMap.drawMap(g);
         player.render(g);
+
     }
 
 
@@ -53,6 +59,7 @@ public class Game implements Runnable {
             if (timeDelta >= 1) {
                 player.move();
                 player.animationLoop();
+                gameMap.update();
                 timeDelta --;
             }
 
