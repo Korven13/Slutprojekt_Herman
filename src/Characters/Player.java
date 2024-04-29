@@ -23,7 +23,7 @@ public class Player extends Character {
     public Player(float posX, float posY, int width, int height) {
         super(posX, posY, width, height);
         splitAnimations();
-        hitbox(posX+32, posY+60, 76, 100);
+        hitbox(posX + 32, posY + 60, 76, 100);
 
 
         /*
@@ -46,12 +46,12 @@ public class Player extends Character {
             BufferedImage imgRunAttack = ImageIO.read(new File("src/Sprites/Run+Attack.png"));
             image = new BufferedImage[4][6];
             for (int i = 0; i < 4; i++) {
-                image[0][i] = imgAttack.getSubimage((i*96)+10, 16, 86, 80);
-                image[1][i] = imgRunAttack.getSubimage((i*96)+10, 16, 86, 80);
+                image[0][i] = imgAttack.getSubimage((i * 96) + 10, 16, 86, 80);
+                image[1][i] = imgRunAttack.getSubimage((i * 96) + 10, 16, 86, 80);
             }
             for (int i = 0; i < 6; i++) {
-                image[2][i] = imgRun.getSubimage((i*96)+10, 16, 86, 80);
-                image[3][i] = imgIdle.getSubimage((i*96)+10, 16, 86, 80);
+                image[2][i] = imgRun.getSubimage((i * 96) + 10, 16, 86, 80);
+                image[3][i] = imgIdle.getSubimage((i * 96) + 10, 16, 86, 80);
             }
         } catch (IOException e) {
             System.out.println("fel");
@@ -65,7 +65,7 @@ public class Player extends Character {
         if (animationTick >= 20) {
             animationTick = 0;
             animationIndex++;
-            if (animationIndex >= animationFrames() ) {
+            if (animationIndex >= animationFrames()) {
                 animationIndex = 0;
             }
         }
@@ -75,8 +75,7 @@ public class Player extends Character {
     private int animationFrames() {
         if (animation == 0 || animation == 1) {
             return 4;
-        }
-        else if (animation == 2 || animation == 3) {
+        } else if (animation == 2 || animation == 3) {
             return 6;
         }
         return 4;
@@ -84,37 +83,36 @@ public class Player extends Character {
 
     public void move() {
         animation = 3;
-        if (right == true) {
+
+        if (right == true && collision(posX + 32, posY + 60, 76, 100) != 2) {
             posX += 1;
-            hitbox.x +=1;
+            hitbox.x += 1;
             animation = 2;
         }
-        if (left == true) {
+        if (left == true && collision(posX + 32, posY + 60, 76, 100) != 1) {
             posX -= 1;
-            hitbox.x -=1;
+            hitbox.x -= 1;
             animation = 2;
         }
-        if (up == true) {
+        if (up == true && collision(posX + 32, posY + 60, 76, 100) != 3) {
             posY -= 1;
-            hitbox.y -=1;
+            hitbox.y -= 1;
             animation = 2;
         }
-        if (down == true) {
+        if (down == true && collision(posX + 32, posY + 60, 76, 100) != 4) {
             posY += 1;
-            hitbox.y +=1;
+            hitbox.y += 1;
             animation = 2;
         }
         if (attack == true && animation == 2) {
             animation = 1;
-        }
-        else if (attack == true) {
+        } else if (attack == true) {
             animation = 0;
         }
-        if (collision(posX+32, posY+60, 76, 100) == true) {
-            System.out.println("collision");
-        }
-        else if (collision(posX+32, posY+60, 76, 100) == false) {
+        if (collision(posX + 32, posY + 60, 76, 100) == 0) {
             System.out.println("collision-false");
+        } else {
+            System.out.println("collision");
         }
     }
 
@@ -129,19 +127,22 @@ public class Player extends Character {
     public void moveRight(boolean movement) {
         this.right = movement;
     }
+
     public void moveLeft(boolean movement) {
         this.left = movement;
     }
+
     public void moveUp(boolean movement) {
         this.up = movement;
     }
+
     public void moveDown(boolean movement) {
         this.down = movement;
     }
+
     public void attack(boolean attack) {
         this.attack = attack;
     }
-
 
 
 }
