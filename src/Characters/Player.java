@@ -84,22 +84,22 @@ public class Player extends Character {
     public void move() {
         animation = 3;
 
-        if (right == true && collision(posX + 32, posY + 60, 76, 100) != 2) {
+        if (right == true && collision(posX + 32, posY + 60, 76, 100, 4) == false) {
             posX += 1;
             hitbox.x += 1;
             animation = 2;
         }
-        if (left == true && collision(posX + 32, posY + 60, 76, 100) != 1) {
+        if (left == true && collision(posX + 32, posY + 60, 76, 100, 3) == false) {
             posX -= 1;
             hitbox.x -= 1;
             animation = 2;
         }
-        if (up == true && collision(posX + 32, posY + 60, 76, 100) != 3) {
+        if (up == true && collision(posX + 32, posY + 60, 76, 100, 1) == false) {
             posY -= 1;
             hitbox.y -= 1;
             animation = 2;
         }
-        if (down == true && collision(posX + 32, posY + 60, 76, 100) != 4) {
+        if (down == true && collision(posX + 32, posY + 60, 76, 100, 2) == false) {
             posY += 1;
             hitbox.y += 1;
             animation = 2;
@@ -109,12 +109,14 @@ public class Player extends Character {
         } else if (attack == true) {
             animation = 0;
         }
-        if (collision(posX + 32, posY + 60, 76, 100) == 0) {
+        /*if (collision(posX + 32, posY + 60, 76, 100,) == 0) {
             System.out.println("collision-false");
-        } else {
-            System.out.println("collision");
         }
+        else {
+         */
+        System.out.println("collision");
     }
+
 
     public void render(Graphics g) {
 

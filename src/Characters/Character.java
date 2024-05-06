@@ -7,11 +7,11 @@ import java.awt.geom.Rectangle2D;
 import Game.GameMap;
 
 public class Character {
-    public float posX;
-    public float posY;
-    public int width;
-    public int height;
-    public Rectangle2D.Float hitbox;
+    protected float posX;
+    protected float posY;
+    protected int width;
+    protected int height;
+    protected Rectangle2D.Float hitbox;
 
     public Character(float posX, float posY, int width, int height) {
         this.posX = posX;
@@ -21,15 +21,15 @@ public class Character {
 
     }
 
-    public void hitbox(float posX, float posY, int width, int height) {
+    protected void hitbox(float posX, float posY, int width, int height) {
         hitbox = new Rectangle2D.Float(posX, posY, width, height);
     }
 
-    public void hitboxDraw(Graphics g) {
+    protected void hitboxDraw(Graphics g) {
         g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
-    public int collision(float posX, float posY, int width, int height) {
+    protected boolean collision(float posX, float posY, int width, int height, int direction) {
         int xTileLeft = (int) posX / 32;
         int xTileRight = (int) (posX + width) / 32;
         int yTileTop = (int) posY / 32;
@@ -56,8 +56,50 @@ public class Character {
         }
          */
 
-        for (int i = 0; i < widthTiles; i++) {
-            for (int j = 0; j < heightTiles; j++) {
+
+        if (direction == 1) {
+            for (int i = 0; i < widthTiles; i++) {
+                for (int j = 0; j < heightTiles; j++) {
+                    if (posY <= 0 || GameMap.getMapData(xTileLeft + i, yTileTop) != 3) {
+                        System.out.println("3");
+                        return true;
+                    }
+                }
+            }
+        }
+        if (direction == 2) {
+            for (int i = 0; i < widthTiles; i++) {
+                for (int j = 0; j < heightTiles; j++) {
+                    if (posY + height >= 704 || GameMap.getMapData(xTileLeft + i, yTileBot) != 3) {
+                        System.out.println("4");
+                        return true;
+                    }
+                }
+            }
+        }
+        if (direction == 3) {
+            for (int i = 0; i < widthTiles; i++) {
+                for (int j = 0; j < heightTiles; j++) {
+                    if (posX <= 0 || GameMap.getMapData(xTileLeft, yTileTop + j) != 3) {
+                        System.out.println("1");
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if (direction == 4) {
+            for (int i = 0; i < widthTiles; i++) {
+                for (int j = 0; j < heightTiles; j++) {
+                    if (posX + width >= 1152 || GameMap.getMapData(xTileRight, yTileTop + j) != 3) {
+                        System.out.println("2");
+                        return true;
+                    }
+                }
+            }
+        }
+
+                /*
                 if (posY <= 0 || GameMap.getMapData(xTileLeft + i, yTileTop) != 3) {
                     System.out.println("3");
                     return 3;
@@ -76,12 +118,12 @@ public class Character {
                     System.out.println("2");
                     return 2;
                 }
-            }
-        }
+
+                 */
 
 
         System.out.println("0");
-        return 0;
+        return false;
 
     }
 

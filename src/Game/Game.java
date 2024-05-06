@@ -9,7 +9,7 @@ import java.awt.*;
 public class Game implements Runnable {
     private Window window;
     private Panel panel;
-    Player player;
+    private Player player;
     private Thread thread;
     private GameMap gameMap;
 
@@ -42,7 +42,6 @@ public class Game implements Runnable {
         double timeDelta = 0;
 
 
-
         while (true) {
 
             currentTime = System.nanoTime();
@@ -53,23 +52,22 @@ public class Game implements Runnable {
 
             if (frameDelta >= 1) {
                 panel.repaint();
-                frameDelta --;
+                frameDelta--;
             }
 
             if (timeDelta >= 1) {
                 player.move();
                 player.animationLoop();
                 gameMap.update();
-                timeDelta --;
+                timeDelta--;
             }
 
 
         }
 
 
-
-
     }
+
     public Player getPlayer() {
         return player;
     }
