@@ -1,4 +1,6 @@
 package Items;
 
-public class RangedWeapon {
+public class RangedWeapon extends Weapon{
+    private int rangedRange;
+
 }
