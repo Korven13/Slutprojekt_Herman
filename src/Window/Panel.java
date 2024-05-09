@@ -1,7 +1,6 @@
 package Window;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 
 import javax.swing.JPanel;
 
@@ -27,7 +26,17 @@ public class Panel extends JPanel {
         game.render(g);
         grid(g);
         //g.drawImage(image, 100, 100, null);
+        text(g);
 
+    }
+
+    private void text (Graphics g) {
+        Font font = new Font("monospaced", Font.BOLD, 36);
+        g.setFont(font);
+        g.drawString("> - Gå höger", 100, 80);
+        g.drawString("< - Gå vänster", 100, 110);
+        g.drawString("^ - Hoppa", 100, 140);
+        g.drawString("Shft - Attack", 100, 170);
     }
 
     private void grid(Graphics g) {

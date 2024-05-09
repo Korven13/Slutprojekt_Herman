@@ -129,6 +129,7 @@ public class Player extends Character {
         }
         else {
             velocityY=0;
+
         }
 
 
