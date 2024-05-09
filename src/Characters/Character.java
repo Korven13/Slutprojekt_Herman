@@ -12,13 +12,16 @@ public class Character {
     protected int width;
     protected int height;
     protected Rectangle2D.Float hitbox;
+    protected static final double gravity = 9.82;
+    protected static final double jumpForce = 20;
+    protected static final double jumpTime = 0.5;
+    protected double velocityY;
 
     public Character(float posX, float posY, int width, int height) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
         this.height = height;
-
     }
 
     protected void hitbox(float posX, float posY, int width, int height) {
@@ -126,5 +129,14 @@ public class Character {
         return false;
 
     }
+
+    public void jump () {
+        if (collision(posX, posY, width, height, 2)==true) {
+            velocityY = jumpForce;
+        }
+
+
+    }
+
 
 }

@@ -94,10 +94,16 @@ public class Player extends Character {
             hitbox.x -= 1;
             animation = 2;
         }
-        if (up == true && collision(posX + 32, posY + 60, 76, 100, 1) == false) {
+        if (up == true && collision(posX + 32, posY + 60, 76, 100, 1) == false && collision(posX + 32, posY + 60, 76, 100, 2) == true) {
+
+            velocityY = -jumpForce;
+            /*
             posY -= 1;
             hitbox.y -= 1;
             animation = 2;
+
+             */
+
         }
         if (down == true && collision(posX + 32, posY + 60, 76, 100, 2) == false) {
             posY += 1;
@@ -114,7 +120,19 @@ public class Player extends Character {
         }
         else {
          */
+
+
+
+        velocityY += gravity;
+        if (velocityY > 10) {
+            velocityY = 10;
+        }
+
         System.out.println("collision");
+
+        posY += velocityY;
+        hitbox.y += velocityY;
+
     }
 
 
