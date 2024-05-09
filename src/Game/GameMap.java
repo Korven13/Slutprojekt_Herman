@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class GameMap {
+    //2d array som representerar kartan
     private static int[][] mapData = {
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
@@ -31,15 +32,18 @@ public class GameMap {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,98,17,17,17,96,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17},
         };
+    //array för kartdelar
     private BufferedImage[] mapTile;
     private Game game;
 
+    //konstruktor för gamemap-klassen
     public GameMap(Game game) {
         this.game = game;
         splitMap();
 
     }
 
+    //läser in tileset från bild, loopar igenom tileset-bilden och delar upp
     private void splitMap() {
         try {
             BufferedImage mapImg = ImageIO.read(new File("src/Sprites/TX Tileset Ground.png"));
@@ -56,6 +60,7 @@ public class GameMap {
         }
     }
 
+    //ritar spelkartan
     public void drawMap(Graphics g) {
         for (int i = 0; i < 22; i++) {
             for (int j = 0; j < 36; j++) {
@@ -64,10 +69,8 @@ public class GameMap {
         }
 
     }
-    public void update() {
 
-    }
-
+    //getter för kart-tile
     public static int getMapData(int x, int y) {
         return mapData[y][x];
     }

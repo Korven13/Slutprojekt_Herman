@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 public class Window extends JFrame {
     private JFrame jframe;
 
+    //konstruktor för Window-klassen
     public Window(Panel Panel) {
+        //lägger till panelen till fönstret, samt specifikationer för fönstret.
         jframe = new JFrame();
         jframe.add(Panel);
         jframe.pack();

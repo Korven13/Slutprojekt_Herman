@@ -8,23 +8,22 @@ import Window.Panel;
 public class Inputs implements KeyListener{
     private Panel panel;
 
+    //konstruktor för Input-klassen
     public Inputs(Panel panel) {
         this.panel = panel;
     }
 
+
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {}
 
-    }
-
+    //kollar när tangent trycks ned
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("CLick");
         switch (e.getKeyCode()) {
-
             case KeyEvent.VK_RIGHT:
                 panel.getGame().getPlayer().moveRight(true);
-
                 break;
             case KeyEvent.VK_LEFT:
                 panel.getGame().getPlayer().moveLeft(true);
@@ -39,9 +38,9 @@ public class Inputs implements KeyListener{
                 panel.getGame().getPlayer().attack(true);
                 break;
         }
-
     }
 
+    //kollar när en tangent släpps
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -64,6 +63,5 @@ public class Inputs implements KeyListener{
                 break;
         }
     }
-
 }
 
