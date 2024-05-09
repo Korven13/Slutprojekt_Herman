@@ -17,14 +17,15 @@ public class Character {
     protected double velocityY;
 
     protected int hp;
+    protected int maxHp;
     protected int armor;
 
-    public Character(float posX, float posY, int width, int height, int hp) {
+    public Character(float posX, float posY, int width, int height, int maxHp) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
         this.height = height;
-        this.hp = hp;
+        this.maxHp = maxHp;
     }
 
     protected void hitbox(float posX, float posY, int width, int height) {

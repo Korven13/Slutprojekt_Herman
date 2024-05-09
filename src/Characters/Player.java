@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Items.*;
+import org.w3c.dom.ranges.Range;
 
 public class Player extends Character {
     private BufferedImage[][] image;
@@ -22,22 +23,28 @@ public class Player extends Character {
     private int animationTick;
 
 
+
+
     private Weapon weapon;
-    //private MeleeWeapon meleeWeapon;
-    //private RangedWeapon rangedWeapon;
+    private MeleeWeapon meleeWeapon;
+    private RangedWeapon rangedWeapon;
     private Equipment equipment;
+    private int startMaxHp = maxHp;
 
 
 
 
 
-    public Player(float posX, float posY, int width, int height, int hp) {
-        super(posX, posY, width, height, hp);
+    public Player(float posX, float posY, int width, int height, int maxHp) {
+        super(posX, posY, width, height, maxHp);
         splitAnimations();
         hitbox(posX + 32, posY + 60, 76, 100);
         Equipment armor1 = new Equipment(1, "Armor", 1, 1);
         MeleeWeapon sword = new MeleeWeapon(1, "sword1");
         equipItems(armor1, sword);
+        RangedWeapon bow = new RangedWeapon(1, "bow1");
+        equipItems(armor1, bow);
+        hp = maxHp;
 
 
 
@@ -54,14 +61,17 @@ public class Player extends Character {
 
     private void equipItems(Equipment equipment, Item item) {
         this.equipment = equipment;
-        hp += equipment.getHpBonus();
+        maxHp = startMaxHp + equipment.getHpBonus();
+
         if (item instanceof MeleeWeapon) {
-            Weapon weapon = (MeleeWeapon) item;
+            this.meleeWeapon = (MeleeWeapon) item;
             System.out.println("svärd");
+            System.out.println(MeleeWeapon.getName());
         }
         if (item instanceof RangedWeapon) {
-            Weapon weapon = (RangedWeapon) item;
+            this.rangedWeapon = (RangedWeapon) item;
             System.out.println("ranged");
+            System.out.println(RangedWeapon.getName());
         }
 
     }

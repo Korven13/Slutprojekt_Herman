@@ -9,4 +9,7 @@ public class Weapon extends Item {
     public Weapon(int weight, String name) {
         super(weight, name);
     }
+    public static String getName() {
+        return name;
+    }
 }
