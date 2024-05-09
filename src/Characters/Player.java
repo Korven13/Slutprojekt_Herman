@@ -94,21 +94,8 @@ public class Player extends Character {
             hitbox.x -= 1;
             animation = 2;
         }
-        if (up == true && collision(posX + 32, posY + 60, 76, 100, 1) == false && collision(posX + 32, posY + 60, 76, 100, 2) == true) {
-
+        if (up == true && collision(posX + 32, posY + 60, 76, 100, 2) == true) {
             velocityY = -jumpForce;
-            /*
-            posY -= 1;
-            hitbox.y -= 1;
-            animation = 2;
-
-             */
-
-        }
-        if (down == true && collision(posX + 32, posY + 60, 76, 100, 2) == false) {
-            posY += 1;
-            hitbox.y += 1;
-            animation = 2;
         }
         if (attack == true && animation == 2) {
             animation = 1;
@@ -124,16 +111,24 @@ public class Player extends Character {
 
 
         velocityY += gravity;
-        if (velocityY > 3) {
-            velocityY = 3;
+        if (velocityY > 4) {
+            velocityY = 4;
         }
-        if (velocityY < 0) {
+        if (collision(posX + 32, posY + 60, 76, 100, 1) == true) {
+            velocityY=0;
+            posY += 1;
+            hitbox.y += 1;
+        }
+        else if (velocityY < 0) {
             posY += velocityY;
             hitbox.y += velocityY;
         }
         else if (collision(posX + 32, posY + 60, 76, 100, 2) == false) {
             posY += velocityY;
             hitbox.y += velocityY;
+        }
+        else {
+            velocityY=0;
         }
 
 
