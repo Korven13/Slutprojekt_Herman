@@ -15,7 +15,7 @@ public class Game implements Runnable {
 
     public Game() {
         gameMap = new GameMap(this);
-        player = new Player(200, 200, 86, 80);
+        player = new Player(200, 200, 86, 80, 100);
         panel = new Panel(this);
         window = new Window(panel);
         thread = new Thread(this);

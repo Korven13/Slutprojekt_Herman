@@ -16,11 +16,15 @@ public class Character {
     protected static final double jumpForce = 4.3;
     protected double velocityY;
 
-    public Character(float posX, float posY, int width, int height) {
+    protected int hp;
+    protected int armor;
+
+    public Character(float posX, float posY, int width, int height, int hp) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
         this.height = height;
+        this.hp = hp;
     }
 
     protected void hitbox(float posX, float posY, int width, int height) {
@@ -39,10 +43,13 @@ public class Character {
         int widthTiles = 1 + width / 32;
         int heightTiles = 1 + height / 32;
 
+        /*
         System.out.println("xTile: " + xTileLeft);
         System.out.println("yTile: " + yTileTop);
         System.out.println("widthTiles: " + widthTiles);
         System.out.println("heightTiles: " + heightTiles);
+
+         */
 
         /*
         for (int i = 0; i < widthTiles; i++) {

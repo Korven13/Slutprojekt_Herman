@@ -8,6 +8,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Items.Equipment;
+import Items.MeleeWeapon;
+import Items.RangedWeapon;
+
 public class Player extends Character {
     private BufferedImage[][] image;
     private int animation = 3;
@@ -20,10 +24,21 @@ public class Player extends Character {
     private int animationTick;
 
 
-    public Player(float posX, float posY, int width, int height) {
-        super(posX, posY, width, height);
+
+    private MeleeWeapon meleeWeapon;
+    private RangedWeapon rangedWeapon;
+    private Equipment equipment;
+
+
+
+
+
+    public Player(float posX, float posY, int width, int height, int hp) {
+        super(posX, posY, width, height, hp);
         splitAnimations();
         hitbox(posX + 32, posY + 60, 76, 100);
+        Equipment armor = new Equipment(1, "Armor", 1, 1);
+
 
 
         /*
@@ -131,6 +146,7 @@ public class Player extends Character {
             velocityY=0;
 
         }
+
 
 
 
