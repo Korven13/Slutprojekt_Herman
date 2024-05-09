@@ -12,4 +12,7 @@ public class Equipment extends Item{
     public int getArmor() {
         return armor;
     }
+    public int getHpBonus() {
+        return hpBonus;
+    }
 }

@@ -8,9 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import Items.Equipment;
-import Items.MeleeWeapon;
-import Items.RangedWeapon;
+import Items.*;
 
 public class Player extends Character {
     private BufferedImage[][] image;
@@ -24,9 +22,9 @@ public class Player extends Character {
     private int animationTick;
 
 
-
-    private MeleeWeapon meleeWeapon;
-    private RangedWeapon rangedWeapon;
+    private Weapon weapon;
+    //private MeleeWeapon meleeWeapon;
+    //private RangedWeapon rangedWeapon;
     private Equipment equipment;
 
 
@@ -37,7 +35,9 @@ public class Player extends Character {
         super(posX, posY, width, height, hp);
         splitAnimations();
         hitbox(posX + 32, posY + 60, 76, 100);
-        Equipment armor = new Equipment(1, "Armor", 1, 1);
+        Equipment armor1 = new Equipment(1, "Armor", 1, 1);
+        MeleeWeapon sword = new MeleeWeapon(1, "sword1");
+        equipItems(armor1, sword);
 
 
 
@@ -50,6 +50,20 @@ public class Player extends Character {
             throw new RuntimeException(e);
         }
          */
+    }
+
+    private void equipItems(Equipment equipment, Item item) {
+        this.equipment = equipment;
+        hp += equipment.getHpBonus();
+        if (item instanceof MeleeWeapon) {
+            Weapon weapon = (MeleeWeapon) item;
+            System.out.println("svärd");
+        }
+        if (item instanceof RangedWeapon) {
+            Weapon weapon = (RangedWeapon) item;
+            System.out.println("ranged");
+        }
+
     }
 
 

@@ -70,7 +70,7 @@ public class Character {
             for (int i = 0; i < widthTiles; i++) {
                 for (int j = 0; j < heightTiles; j++) {
                     if (posY <= 0 || GameMap.getMapData(xTileLeft + i, yTileTop) != 3) {
-                        System.out.println("3");
+                        //System.out.println("3");
                         return true;
                     }
                 }
@@ -80,7 +80,7 @@ public class Character {
             for (int i = 0; i < widthTiles; i++) {
                 for (int j = 0; j < heightTiles; j++) {
                     if (posY + height >= 704 || GameMap.getMapData(xTileLeft + i, yTileBot) != 3) {
-                        System.out.println("4");
+                        //System.out.println("4");
                         return true;
                     }
                 }
@@ -90,7 +90,7 @@ public class Character {
             for (int i = 0; i < widthTiles; i++) {
                 for (int j = 0; j < heightTiles; j++) {
                     if (posX <= 0 || GameMap.getMapData(xTileLeft, yTileTop + j) != 3) {
-                        System.out.println("1");
+                        //System.out.println("1");
                         return true;
                     }
                 }
@@ -101,7 +101,7 @@ public class Character {
             for (int i = 0; i < widthTiles; i++) {
                 for (int j = 0; j < heightTiles; j++) {
                     if (posX + width >= 1152 || GameMap.getMapData(xTileRight, yTileTop + j) != 3) {
-                        System.out.println("2");
+                        //System.out.println("2");
                         return true;
                     }
                 }
@@ -131,7 +131,7 @@ public class Character {
                  */
 
 
-        System.out.println("0");
+        //System.out.println("0");
         return false;
 
     }
