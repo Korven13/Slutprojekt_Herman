@@ -12,8 +12,8 @@ public class Character {
     protected int width;
     protected int height;
     protected Rectangle2D.Float hitbox;
-    protected static final double gravity = 9.82;
-    protected static final double jumpForce = 20;
+    protected static final double gravity = 0.1;
+    protected static final double jumpForce = 5;
     protected static final double jumpTime = 0.5;
     protected double velocityY;
 

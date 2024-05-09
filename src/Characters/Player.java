@@ -124,14 +124,20 @@ public class Player extends Character {
 
 
         velocityY += gravity;
-        if (velocityY > 10) {
-            velocityY = 10;
+        if (velocityY > 3) {
+            velocityY = 3;
+        }
+        if (velocityY < 0) {
+            posY += velocityY;
+            hitbox.y += velocityY;
+        }
+        else if (collision(posX + 32, posY + 60, 76, 100, 2) == false) {
+            posY += velocityY;
+            hitbox.y += velocityY;
         }
 
-        System.out.println("collision");
 
-        posY += velocityY;
-        hitbox.y += velocityY;
+
 
     }
 
