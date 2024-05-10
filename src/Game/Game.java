@@ -55,8 +55,7 @@ public class Game implements Runnable {
 
             //kollar om det ska ritas ny bild
             if (frameDelta >= 1) {
-                //ritar panelen på nytt
-                panel.repaint();
+                panel.repaint();    //ritar panelen på nytt
                 frameDelta--;
             }
 

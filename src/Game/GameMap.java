@@ -48,6 +48,7 @@ public class GameMap {
         try {
             BufferedImage mapImg = ImageIO.read(new File("src/Sprites/TX Tileset Ground.png"));
             mapTile = new BufferedImage[256];
+            //loop för att dela upp bilden i 32x32px tiles
             for (int i = 0; i < 16; i++) {
                 for (int j = 0; j < 16; j++) {
                     mapTile[i*16+j] = mapImg.getSubimage(j * 32, i * 32, 32, 32);
@@ -62,6 +63,7 @@ public class GameMap {
 
     //ritar spelkartan
     public void drawMap(Graphics g) {
+        //loop för rita varje tile
         for (int i = 0; i < 22; i++) {
             for (int j = 0; j < 36; j++) {
                 g.drawImage(mapTile[mapData[i][j]], 32 * j, 32 * i, 32, 32, null);

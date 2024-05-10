@@ -69,6 +69,7 @@ public class Player extends Character {
             BufferedImage imgAttack = ImageIO.read(new File("src/Sprites/Attack_1.png"));
             BufferedImage imgRunAttack = ImageIO.read(new File("src/Sprites/Run+Attack.png"));
             image = new BufferedImage[4][6];
+            //loop för splitta animation-set till separata frames
             for (int i = 0; i < 4; i++) {
                 image[0][i] = imgAttack.getSubimage((i * 96) + 10, 16, 86, 80);
                 image[1][i] = imgRunAttack.getSubimage((i * 96) + 10, 16, 86, 80);

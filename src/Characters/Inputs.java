@@ -20,7 +20,6 @@ public class Inputs implements KeyListener{
     //kollar när tangent trycks ned
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("CLick");
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 panel.getGame().getPlayer().moveRight(true);
@@ -44,10 +43,8 @@ public class Inputs implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-
             case KeyEvent.VK_RIGHT:
                 panel.getGame().getPlayer().moveRight(false);
-
                 break;
             case KeyEvent.VK_LEFT:
                 panel.getGame().getPlayer().moveLeft(false);

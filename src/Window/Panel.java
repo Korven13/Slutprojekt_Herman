@@ -46,11 +46,13 @@ public class Panel extends JPanel {
     private void grid(Graphics g) {
         int x;
         int y;
+        //loop för att rita horisontella linjer
         for (int i = 0; i < 22; i++) {
             y = i * 32;
             g.drawLine(0, y, 1152, y);
 
         }
+        //loop för att rita vertikala linjer
         for (int j = 0; j < 36; j++) {
             x = j * 32;
             g.drawLine(x, 0, x, 704);
