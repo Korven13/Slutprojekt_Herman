@@ -10,8 +10,5 @@ public class Weapon extends Item {
     public Weapon(int weight, String name) {
         super(weight, name);
     }
-    //getter för item namn
-    public static String getName() {
-        return name;
-    }
+
 }

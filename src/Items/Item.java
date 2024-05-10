@@ -10,4 +10,9 @@ public class Item {
         this.weight = weight;
         this.name = name;
     }
+
+    //getter för item namn
+    public static String getName() {
+        return name;
+    }
 }
