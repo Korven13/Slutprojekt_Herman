@@ -30,6 +30,8 @@ public class Player extends Character {
 
     private int startMaxHp = maxHp;   //sätter grund maxHp
 
+    private Inventory<Item> inventory;
+
     //konstruktor för Player-klassen + equipments
     public Player(float posX, float posY, int width, int height, int maxHp) {
         super(posX, posY, width, height, maxHp);
@@ -42,6 +44,19 @@ public class Player extends Character {
         RangedWeapon bow = new RangedWeapon(1, "bow1");
         equipItems(armor1, bow);
         hp = maxHp;
+        inventory = new Inventory<>();
+
+        addToInventory(sword);
+        addToInventory(bow);
+        addToInventory(armor1);
+    }
+
+    private void addToInventory(Item item) {
+        inventory.addItem(item);
+    }
+
+    private void removeFromInventory(Item item) {
+        inventory.removeItem(item);
     }
 
     //equipar items
